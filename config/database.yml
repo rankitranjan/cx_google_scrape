@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { 'cx_google_scraper_development' } %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { 'cx_google_scraper_test' } %>
+
+production:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] %>
