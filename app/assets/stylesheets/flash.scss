@@ -1,0 +1,19 @@
+.flash-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  z-index: 1050;
+  text-align: center;
+
+  .flash-message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+}
