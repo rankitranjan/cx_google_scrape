@@ -18,6 +18,43 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <%= link_to "Google Scraper", root_path, class: "navbar-brand" %>
+
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Profile", edit_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link"  %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="flash-container">
+      <% if notice %>
+        <div class="alert alert-success flash-message"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger flash-message"><%= alert %></div>
+      <% end %>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

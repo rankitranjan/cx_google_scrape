@@ -1,0 +1,20 @@
+<h2 class="text-center">Forgot Password?</h2>
+
+<div class="container d-flex justify-content-center">
+  <div class="col-md-6">
+    <p class="text-center">Enter your email, and we’ll send you instructions to reset your password.</p>
+    <%= form_with(model: resource, as: resource_name, url: password_path(resource_name), class: "card p-4 shadow-lg") do |f| %>
+      <div class="form-group mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, class: "form-control", required: true, autofocus: true %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= f.submit "Send Reset Instructions", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <div class="text-center mt-3">
+      <p>Remembered your password? <%= link_to "Sign In", new_session_path(resource_name), class: "text-primary" %></p>
+    </div>
+  </div>
+</div>
