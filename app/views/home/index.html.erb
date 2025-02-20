@@ -1,0 +1,7 @@
+<h1 class="text-center">Welcome to MyApp</h1>
+
+<% if user_signed_in? %>
+  <p class="text-center">Hello, <%= current_user.email %>!</p>
+<% else %>
+  <p class="text-center"><%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %></p>
+<% end %>
