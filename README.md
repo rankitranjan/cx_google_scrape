@@ -1,4 +1,4 @@
-# Search Engine Results Page(SERP)
+# CX google scraper
 
 ## Description
 A Ruby on Rails application using PostgreSQL as the database, SCSS as the CSS preprocessor, Bootstrap for the front-end framework, and Devise for user authentication.
