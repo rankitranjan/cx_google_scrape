@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User Authentication", type: :request do
+describe "User Authentication", type: :request do
   let(:user) { create(:user) }
 
   describe "POST /users" do

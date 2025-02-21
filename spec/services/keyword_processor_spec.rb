@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe KeywordProcessor do
+describe KeywordProcessor do
   describe '.process' do
     it 'removes duplicates and sorts keywords' do
       keywords = ['Hotel', 'Flight', 'hotel', 'flight', 'Car Rental']

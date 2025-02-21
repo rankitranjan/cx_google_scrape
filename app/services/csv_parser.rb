@@ -5,7 +5,7 @@ class CsvParser
     return [] if csv_content.strip.empty?
 
     parsed_data = CSV.parse(csv_content, headers: true)
-    parsed_data['keyword']
+    parsed_data['Keywords']
       .compact
       .reject(&:empty?)
       .reject { |keyword| keyword.match?(/^\W+$/) }
