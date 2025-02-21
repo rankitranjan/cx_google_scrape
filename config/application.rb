@@ -23,5 +23,13 @@ module CxGoogleScraper
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.helper_specs false      # Disable helper specs
+      g.routing_specs false     # Disable routing specs
+      g.request_specs false     # Disable request specs
+      g.controller_specs false  # Disable controller specs
+    end    
   end
 end

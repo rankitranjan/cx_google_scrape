@@ -15,11 +15,16 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "pry"
+  gem 'faker'  
+  gem 'rspec-rails', '~> 6.0'
+  gem 'factory_bot_rails'
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers'
   gem "selenium-webdriver"
 end
 
