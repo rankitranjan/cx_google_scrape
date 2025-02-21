@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-dark text-white text-center">
+          <h4 class="mb-0">Upload CSV File</h4>
+        </div>
+        <div class="card-body p-4">
+          <div class="text-center mb-3">
+            <p class="text-muted text-center">Select a CSV file with keywords to process.</p>
+          </div>
+          <%= form_with model: @keyword, url: keywords_path, method: :post, local: true, multipart: true, class: "needs-validation", id: "csvUploadForm" do |form| %>
+            <div class="mb-3">
+              <%= form.label :file, "Choose CSV File", class: "form-label fw-bold" %>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+                <%= form.file_field :file, accept: ".csv", class: "form-control", required: true, id: "csvFileInput" %>
+              </div>
+              <small class="form-text text-muted">Only .csv files are allowed.</small>
+              <p class="form-text text-muted">Download Sample CSV
+              <a href="<%= sample_csv_keywords_path %>" class=""><i class="bi bi-download"></i></a></p>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary fw-bold" id="uploadButton">
+                <span id="buttonText">Submit</span>
+                <span id="loadingSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
