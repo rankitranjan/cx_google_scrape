@@ -1,11 +1,11 @@
 require 'rails_helper'
 require 'csv'
 
-RSpec.describe CsvParser do
+describe CsvParser do
   describe '.parse' do
     let(:csv_content) do
       <<~CSV
-        keyword
+        Keywords
         Python
         Ruby
         React
@@ -27,7 +27,7 @@ RSpec.describe CsvParser do
 
     it 'ignores empty lines in CSV content' do
       csv_with_empty_lines = <<~CSV
-        keyword
+        Keywords
         Python
 
         Ruby
@@ -41,7 +41,7 @@ RSpec.describe CsvParser do
 
     it 'ignores keywords with only special characters' do
       csv_with_special_chars = <<~CSV
-        keyword
+        Keywords
         Ruby
         $$$$
         @#$%^&
