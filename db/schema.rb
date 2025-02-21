@@ -10,23 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_21_204004) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_21_232218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "keywords", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_keywords_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+  create_table "search_results", force: :cascade do |t|
+    t.bigint "keyword_id", null: false
+    t.integer "total_ads"
+    t.integer "total_links"
+    t.string "total_results"
+    t.text "html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["keyword_id"], name: "index_search_results_on_keyword_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +47,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_204004) do
   end
 
   add_foreign_key "keywords", "users"
+  add_foreign_key "search_results", "keywords"
 end
