@@ -26,7 +26,7 @@
                 <td><%= keyword.total_links %></td>
                 <td><%= keyword.total_results %></td>
                 <td class="action-items">
-                  <%= link_to keyword_refresh_path(keyword), class: "btn btn-primary", title: 'Click to refresh the result' do %>
+                  <%= link_to keyword_refresh_path(keyword), class: "btn btn-success", title: 'Click to refresh the result' do %>
                     <i class="bi bi-arrow-clockwise"></i>
                   <% end %>
                   <%= button_to keyword_path(keyword), method: :delete, class: "btn btn-danger" do %>
@@ -45,4 +45,5 @@
       <% end %>
     </div>
   <% end %>
+  <%= paginate @keywords %>
 </div>

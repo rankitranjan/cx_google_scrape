@@ -82,7 +82,7 @@ describe "Keywords", type: :request do
       get sample_csv_keywords_path
       expect(response).to have_http_status(:ok)
       expect(response.headers["Content-Type"]).to include("text/csv")
-      expect(response.body).to include("Keywords\nWeather\nAmazon\nDefine")
+      expect(response.body).to include("Keywords\nCool Jackets online\nCool shoes\nIphone online")
     end
   end
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Cx Google Scraper" %></title>
+    <title><%= content_for(:title) || "Cx My Scraper" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -20,10 +20,13 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <%= link_to "Google Scraper", root_path, class: "navbar-brand" %>
-        <ul class="nav">
+        <%= link_to "My Scraper", root_path, class: "navbar-brand" %>
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <%= link_to "Keywords", keywords_path, data: { turbo_method: :get }, class: "nav-link"  %>
+            <%= link_to "Keywords", keywords_path, class: "nav-link"  %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Upload keywords csv", new_keyword_path, class: "nav-link" %>
           </li>
         </ul>
 

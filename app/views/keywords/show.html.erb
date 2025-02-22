@@ -8,7 +8,7 @@
       <p><strong>Total Ads:</strong> <%= @keyword.total_ads %></p>
       <p><strong>Total Links:</strong> <%= @keyword.total_links %></p>
       <p><strong>Total Results:</strong> <%= @keyword.total_results %></p>
-      <p><strong>Html Code:</strong><iframe class="html-content-frame" srcdoc="<%= raw @keyword.html.gsub('"', '&quot;') %>"></iframe></p>
+      <p><strong>Html Content:</strong><iframe class="html-content-frame" srcdoc="<%= raw @keyword.html.gsub('"', '&quot;') %>"></iframe></p>
 
       <div class="mt-4">
         <a href="<%= keywords_path %>" class="btn btn-secondary">

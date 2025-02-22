@@ -32,3 +32,4 @@ end
 gem 'devise'
 gem "sidekiq", "~> 7.3"
 gem "playwright-ruby-client"
+gem 'kaminari'
