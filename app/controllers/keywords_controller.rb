@@ -1,9 +1,9 @@
 class KeywordsController < ApplicationController
-  before_action :set_keyword, only: [:show, :destroy]
+  before_action :set_keyword, only: [:show, :destroy, :refresh]
   before_action :authenticate_user!
 
   def index
-    @keywords = current_user.keywords
+    @keywords = current_user.keywords.includes(:search_result)
   end
 
   def new
@@ -32,7 +32,6 @@ class KeywordsController < ApplicationController
     @keyword.destroy
     respond_to do |format|
       format.html { redirect_to keywords_url, notice: 'Keyword was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -41,10 +40,17 @@ class KeywordsController < ApplicationController
     send_data sample_data, filename: "sample_keywords.csv", type: "text/csv"
   end
 
+  def refresh
+    @keyword.refresh
+    respond_to do |format|
+      format.html { redirect_to keywords_url, notice: 'Successfully triggerd for refresh.' }
+    end
+  end
+
   private
 
   def set_keyword
-    @keyword = Keyword.find(params[:id])
+    @keyword = Keyword.find(params[:id] || params[:keyword_id])
   end
 
   def keyword_params

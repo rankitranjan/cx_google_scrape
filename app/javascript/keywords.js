@@ -26,3 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+document.querySelectorAll("tr[data-link]").forEach(row => {
+  row.addEventListener("click", () => {
+    window.location = row.getAttribute("data-link");
+  });
+});
