@@ -1,6 +1,19 @@
 class Keyword < ApplicationRecord
-  belongs_to :user
+  enum :status, [:pending, :completed, :failed], default: :pending
   validates :name, presence: true, uniqueness: { scope: :user_id }
 
-  enum status: { pending: 0, completed: 1, failed: 2 }
+  belongs_to :user
+  has_one :search_result, dependent: :destroy
+
+  after_create_commit :enqueue_search_job
+
+  delegate :total_ads, :total_links, :total_results, :html, to: :search_result, allow_nil: true
+
+  private
+
+  def enqueue_search_job
+    return unless self.pending?
+
+    KeywordSearchJob.perform_async(self.id)
+  end
 end

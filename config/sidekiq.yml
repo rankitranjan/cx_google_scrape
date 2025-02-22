@@ -1,0 +1,17 @@
+---
+:concurrency: 5
+staging:
+  :concurrency: 5
+production:
+  :concurrency: 10
+
+timeout: 20
+
+:queues:
+  - critical
+  - default
+  - low
+  - [crawler, 1]
+
+:limits:
+  crawler: 1

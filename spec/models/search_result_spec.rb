@@ -4,6 +4,16 @@ describe SearchResult, type: :model do
   let(:user) { create(:user) }
   let(:keyword) { create(:keyword, user: user) } 
 
+  before do
+    allow(SearchService).to receive(:perform_search).and_return(
+      total_adwords: 5,
+      total_links: 100,
+      total_results: 5000,
+      html_content: "<html>some html</html>",
+      status: 'completed'
+    )
+  end
+
   it "is valid with valid attributes" do
     search_result = SearchResult.new(
       keyword: keyword,

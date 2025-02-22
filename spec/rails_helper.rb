@@ -7,6 +7,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'shoulda/matchers'
 
+require 'sidekiq/testing'
+Sidekiq::Testing.inline!
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -16,7 +19,7 @@ end
 RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :feature
   config.before(:each, type: :feature) { Warden.test_mode! }
-  config.after(:each, type: :feature) { Warden.test_reset! }  
+  config.after(:each, type: :feature) { Warden.test_reset! }
 
   config.include FactoryBot::Syntax::Methods
 
