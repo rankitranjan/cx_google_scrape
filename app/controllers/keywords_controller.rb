@@ -3,7 +3,7 @@ class KeywordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @keywords = current_user.keywords.includes(:search_result)
+    @keywords = current_user.keywords.includes(:search_result).order(created_at: :desc).page(params[:page] || 1).per(12)
   end
 
   def new
