@@ -12,10 +12,6 @@ class KeywordsController < ApplicationController
 
   def create
     file = keyword_params[:file]
-    if file.blank?
-      return render json: { error: 'No file provided' }, status: :unprocessable_entity
-    end
-
     csv_content = file.read
     keywords = CsvParser.parse(csv_content)
     processed_keywords = KeywordProcessor.process(keywords)
@@ -41,7 +37,7 @@ class KeywordsController < ApplicationController
   end
 
   def sample_csv
-    sample_data = "Keywords\nWeather\nAmazon\nDefine"
+    sample_data = "Keywords\nCool Jackets online\nCool shoes\nIphone online"
     send_data sample_data, filename: "sample_keywords.csv", type: "text/csv"
   end
 

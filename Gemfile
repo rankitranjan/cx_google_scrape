@@ -14,7 +14,7 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 group :development, :test do
-  gem "pry"
+  gem "byebug"
   gem 'faker'  
   gem 'rspec-rails', '~> 6.0'
   gem 'factory_bot_rails'
@@ -25,8 +25,10 @@ group :test do
   gem "capybara"
   gem 'database_cleaner-active_record'
   gem 'shoulda-matchers'
-  # gem "selenium-webdriver"
+  gem 'rspec-sidekiq'
 end
 
 # Use devise for user management
 gem 'devise'
+gem "sidekiq", "~> 7.3"
+gem "playwright-ruby-client"

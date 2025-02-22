@@ -1,3 +1,5 @@
+require 'playwright'
+
 RSpec.configure do |config|
   # Clean DB before running tests
   config.before(:suite) do
@@ -16,8 +18,16 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  config.before(:each) do
+    allow(Playwright).to receive(:create).and_return(double("PlaywrightInstance"))
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.before(:each) do
+    Sidekiq::Worker.clear_all # Clear Sidekiq queue before each test
   end
 
   config.expect_with :rspec do |expectations|

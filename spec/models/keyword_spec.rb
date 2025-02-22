@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 describe Keyword, type: :model do
+  before do
+    allow(SearchService).to receive(:perform_search).and_return(
+      total_adwords: 5,
+      total_links: 100,
+      total_results: 5000,
+      html_content: "<html>some html</html>",
+      status: 'completed'
+    )
+  end
+  
   describe "Validations" do
     let(:user) { User.create!(email: "test@example.com", password: "password") }
 

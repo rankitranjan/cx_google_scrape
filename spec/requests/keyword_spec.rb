@@ -1,14 +1,25 @@
 require 'rails_helper'
 
 describe "Keywords", type: :request do
-  let(:user) { User.create!(email: "test@example.com", password: "password") }
-  let!(:keyword) { Keyword.create!(name: "Rails Testing", user: user) }
+  let(:user) { create(:user) }
+
+  before do
+    allow(SearchService).to receive(:perform_search).and_return(
+      total_adwords: 5,
+      total_links: 100,
+      total_results: 5000,
+      html_content: "<html>some html</html>",
+      status: 'completed'
+    )
+  end
 
   before do
     sign_in user
   end
 
   describe "GET /index" do
+    let!(:keyword) { create(:keyword, name: "Rails Testing", user: user) }
+
     it "returns a successful response" do
       get keywords_path
       expect(response).to have_http_status(:ok)
@@ -38,18 +49,11 @@ describe "Keywords", type: :request do
         expect(response.body).to include("Keywords processed successfully.")
       end
     end
-
-    context "with missing file" do
-      it "returns an error" do
-        post keywords_path, params: { keyword: { file: nil } }
-
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.body).to include("No file provided")
-      end
-    end
   end
 
   describe "GET /show/:id" do
+    let!(:keyword) { create(:keyword, name: "Rails Testing", user: user) }
+
     it "returns a successful response" do
       get keyword_path(keyword)
       expect(response).to have_http_status(:ok)
@@ -58,6 +62,8 @@ describe "Keywords", type: :request do
   end
 
   describe "DELETE /destroy/:id" do
+    let!(:keyword) { create(:keyword, name: "Rails Testing", user: user) }
+
     it "deletes the keyword and redirects" do
       expect {
         delete keyword_path(keyword)
@@ -70,6 +76,8 @@ describe "Keywords", type: :request do
   end
 
   describe "GET /sample_csv" do
+    let!(:keyword) { create(:keyword, name: "Rails Testing", user: user) }
+
     it "returns a sample CSV file" do
       get sample_csv_keywords_path
       expect(response).to have_http_status(:ok)
