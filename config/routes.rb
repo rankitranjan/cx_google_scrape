@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :keywords do
+    get :refresh
     collection do
       get :sample_csv
     end

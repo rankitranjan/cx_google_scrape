@@ -9,6 +9,10 @@ class Keyword < ApplicationRecord
 
   delegate :total_ads, :total_links, :total_results, :html, to: :search_result, allow_nil: true
 
+  def refresh
+    KeywordSearchJob.perform_async(self.id)
+  end
+
   private
 
   def enqueue_search_job
