@@ -11,9 +11,13 @@
   justify-content: space-evenly;    
 }
 
-.search-form{
+.search-padding {
+  padding: 15rem;
+}
+
+.search-form {
   position: relative;
-  padding: 100px;
+  padding: 10px;
   padding-bottom: unset;
   text-align:center;
 }
@@ -61,7 +65,19 @@
 }
 
 .welcome-message {
+  padding-bottom: 40px;
   margin-right: 8rem;
+  font-family: sans-serif;
+  font-size: 45px;
+  background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-text {
+  background-image: linear-gradient(to left, blue, blue, red, green, violet, red, indigo, green, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .result-item {

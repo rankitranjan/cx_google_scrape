@@ -1,35 +1,36 @@
-<div class="search-form text-center">
-  <h1 class="welcome-message">Welcome to My Scraper</h1>
-  <% if user_signed_in? %>
-    <p class="welcome-message">Hello, <%= current_user.email %>!</p>
-  <% end %>
-
-  <div class="container">
-    <form action="<%= search_keywords_path %>" method="get">
-      <input value="<%= @search %>" type="search" name="q" placeholder="Search keywords">
-      <button><ion-icon class="bi bi-search" name="search-outline"></ion-icon></button>
-    </form>
-  </div>  
-</div>
-
-<% if @search.present? %>
-  <div class="container result-container">
-    <% if @keywords.present? %>
-      <p class="text-muted">About <%= @keywords.total_count %> results found for <%= link_to @search, search_keywords_path(q: @search.parameterize) %></p>
-
-      <% @keywords.each do |keyword| %>
-        <div class="result-item">
-          <a class="result-title" href=<%= keyword_path(keyword) %>><%= keyword.name %></a>
-          <p class="result-url"><%= search_keywords_url(q: keyword.name.parameterize) %></p>
-          <p class="result-description">This is a search result for <%= keyword.name %> has <%= keyword.total_ads %> AdWords on the page More details about this keyword <%= link_to 'here.', keyword_path(keyword), class: "text-muted" %></p>
-        </div>
-      <% end %>
-
-    <% else %>
-      <p class="text-danger">No results found for <%= link_to @search, search_keywords_path(q: @search.parameterize) %>. upload csv for keywords <%= link_to "here", new_keyword_path %></p>
+<div class="<%= @search.present? ? "col-md-8" : "col-md-12 search-padding" %>">
+  <div class="search-form text-center">
+    <% if @search.nil? %>
+      <h1 class="welcome-message">Welcome to My Scraper</h1>
     <% end %>
-    <% if @keywords.present? %>
-      <%= paginate @keywords %>
-    <% end %>  
+
+    <div class="container">
+      <form action="<%= search_keywords_path %>" method="get">
+        <input value="<%= @search %>" type="search" name="q" placeholder="Search keywords">
+        <button><ion-icon class="bi bi-search" name="search-outline"></ion-icon></button>
+      </form>
+    </div>
   </div>
-<% end %>
+
+  <% if @search.present? %>
+    <div class="container result-container">
+      <% if @keywords.present? %>
+        <p class="text-muted">About <%= @keywords.total_count %> results found for <%= link_to @search, search_keywords_path(q: @search.parameterize) %></p>
+
+        <% @keywords.each do |keyword| %>
+          <div class="result-item">
+            <a class="result-title" href=<%= keyword_path(keyword) %>><%= keyword.name %></a>
+            <p class="result-url"><%= search_keywords_url(q: keyword.name.parameterize) %></p>
+            <p class="result-description">This is a search result for <%= keyword.name %> has <%= keyword.total_ads %> AdWords on the page More details about this keyword <%= link_to 'here.', keyword_path(keyword), class: "text-muted" %></p>
+          </div>
+        <% end %>
+
+      <% else %>
+        <p class="text-danger">No results found for <%= link_to @search, search_keywords_path(q: @search.parameterize) %>. upload csv for keywords <%= link_to "here", new_keyword_path %></p>
+      <% end %>
+      <% if @keywords.present? %>
+        <%= paginate @keywords %>
+      <% end %>  
+    </div>
+  <% end %>
+</div>

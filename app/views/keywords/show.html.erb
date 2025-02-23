@@ -1,19 +1,21 @@
-<div class="container mt-5">
-  <div class="card shadow-lg">
-    <div class="card-header bg-dark text-white">
-      <h4 class="mb-0">Keyword Details</h4>
-    </div>
-    <div class="card-body">
-      <p><strong>Keyword:</strong> <%= @keyword.name %></p>
-      <p><strong>Total Ads:</strong> <%= @keyword.total_ads %></p>
-      <p><strong>Total Links:</strong> <%= @keyword.total_links %></p>
-      <p><strong>Total Results:</strong> <%= @keyword.total_results %></p>
-      <p><strong>Html Content:</strong><iframe class="html-content-frame" srcdoc="<%= raw @keyword.html.gsub('"', '&quot;') %>"></iframe></p>
+<div class="col-md-12">
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">Keyword Details</h4>
+      </div>
+      <div class="card-body">
+        <p><strong>Keyword:</strong> <%= @keyword.name %></p>
+        <p><strong>Total Ads:</strong> <%= @keyword.total_ads %></p>
+        <p><strong>Total Links:</strong> <%= @keyword.total_links %></p>
+        <p><strong>Total Results:</strong> <%= @keyword.total_results %></p>
+        <p><strong>Html Content:</strong><iframe class="html-content-frame" srcdoc="<%= raw @keyword.html.gsub('"', '&quot;') %>"></iframe></p>
 
-      <div class="mt-4">
-        <a href="<%= keywords_path %>" class="btn btn-secondary">
-          <i class="bi bi-arrow-left"></i> Back to List
-        </a>
+        <div class="mt-4">
+          <a href="<%= keywords_path %>" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to List
+          </a>
+        </div>
       </div>
     </div>
   </div>
