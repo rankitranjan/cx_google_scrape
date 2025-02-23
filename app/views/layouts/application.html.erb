@@ -20,19 +20,24 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <%= link_to "My Scraper", root_path, class: "navbar-brand" %>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <%= link_to "Keywords", keywords_path, class: "nav-link"  %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Upload keywords csv", new_keyword_path, class: "nav-link" %>
-          </li>
-        </ul>
-
+        <%= link_to "My Scraper", root_path, class: "navbar-brand home-text" %>
+        <% if user_signed_in? %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <%= link_to "Keywords", keywords_path, class: "nav-link"  %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Upload keyword csv", new_keyword_path, class: "nav-link" %>
+            </li>
+          </ul>
+        <% end %>
+  
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto">
             <% if user_signed_in? %>
+              <li class="nav-item">
+                <span class="nav-link">Hello <%= current_user.email %>!</span>
+              </li>
               <li class="nav-item">
                 <%= link_to "Profile", edit_user_registration_path, class: "nav-link" %>
               </li>
@@ -60,9 +65,7 @@
       <% end %>
     </div>
     <div class="row mt-4">
-      <div class="col-md-12">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
   </body>
 </html>
