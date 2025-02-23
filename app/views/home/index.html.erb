@@ -1,6 +1,6 @@
 <div class="<%= @search.present? ? "col-md-8" : "col-md-12 search-padding" %>">
   <div class="search-form text-center">
-    <% if @search.nil? %>
+    <% if @search.blank? %>
       <h1 class="welcome-message">Welcome to My Scraper</h1>
     <% end %>
 

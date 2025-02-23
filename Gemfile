@@ -9,8 +9,6 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem 'sassc-rails'
 gem "tzinfo-data"
-
-# Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 group :development, :test do
@@ -21,7 +19,6 @@ group :development, :test do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem 'database_cleaner-active_record'
   gem 'shoulda-matchers'
@@ -33,3 +30,5 @@ gem 'devise'
 gem "sidekiq", "~> 7.3"
 gem "playwright-ruby-client"
 gem 'kaminari'
+gem 'active_model_serializers'
+gem 'jwt'

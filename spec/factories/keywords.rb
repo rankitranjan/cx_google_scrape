@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :keyword do
     user { nil }
-    name { "MyString" }
+    sequence(:name) { |n| "name_#{n}" }
     status { :pending }
   end
 end
