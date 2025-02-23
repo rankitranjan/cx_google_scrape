@@ -14,5 +14,7 @@ test:
   database: <%= ENV.fetch("DATABASE_NAME") { 'cx_google_scraper_test' } %>
 
 production:
-  <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  url: <%= ENV['DATABASE_URL'] %>
