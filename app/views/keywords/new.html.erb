@@ -10,7 +10,20 @@
             <div class="text-center mb-3">
               <p class="text-muted text-center">Select a CSV file with keywords to process.</p>
             </div>
-            <%= form_with model: @keyword, url: keywords_path, method: :post, local: true, multipart: true, class: "needs-validation", id: "csvUploadForm" do |form| %>
+            <%= form_with model: @keyword, url: keywords_path, method: :post, local: true, multipart: true, class: "needs-validation", id: "csvUploadForm", scope: :keyword do |form| %>
+
+              <% if @keyword.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@keyword.errors.count, "error") %> prohibited this keyword from being saved:</h2>
+
+                  <ul>
+                    <% @keyword.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
               <div class="mb-3">
                 <%= form.label :file, "Choose CSV File", class: "form-label fw-bold" %>
                 <div class="input-group">

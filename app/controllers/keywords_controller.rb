@@ -22,6 +22,8 @@ class KeywordsController < ApplicationController
 
     redirect_to keywords_url, notice: 'Keywords processed successfully.'
   rescue => e
+    @keyword = Keyword.new
+    @keyword.errors.add(:base, e)
     render :new
   end
 
