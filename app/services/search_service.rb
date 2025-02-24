@@ -59,8 +59,13 @@ class SearchService
 
   def self.extract_search_data(page)
     # Extract AdWords count
-    adwords_count = page.locator("div.pla-unit, div.mnr-c").count
-    adwords_count += page.locator("div[data-dtld]").count if adwords_count.zero?
+    adwords_pla_unit_count = page.locator("div.pla-unit, div.mnr-c").count || 0
+    adwords_data_dtld_count = page.locator("div[data-dtld]").count | 0
+    adwords_text_count = page.locator('div[data-text-ad]').count || 0
+
+    adwords_count = adwords_pla_unit_count + adwords_data_dtld_count + adwords_text_count
+
+
 
     # Extract total links count
     total_links = page.locator('a').count
