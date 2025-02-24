@@ -124,6 +124,9 @@ GEM
       i18n (>= 1.8.11, < 2)
     ffi (1.17.1-x86_64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
+    get_process_mem (1.0.0)
+      bigdecimal (>= 2.0)
+      ffi (~> 1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -198,6 +201,10 @@ GEM
     public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
+    puma_worker_killer (1.0.0)
+      bigdecimal (>= 2.0)
+      get_process_mem (>= 0.2)
+      puma (>= 2.7)
     racc (1.8.1)
     rack (3.1.10)
     rack-session (2.1.0)
@@ -336,6 +343,7 @@ DEPENDENCIES
   pg (~> 1.1)
   playwright-ruby-client
   puma (>= 5.0)
+  puma_worker_killer
   rails (~> 7.2.2, >= 7.2.2.1)
   rspec-rails (~> 6.0)
   rspec-sidekiq

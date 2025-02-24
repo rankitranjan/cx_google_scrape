@@ -32,5 +32,6 @@ gem 'devise'
 gem "sidekiq", "~> 7.3"
 gem "playwright-ruby-client"
 gem 'kaminari'
+gem "puma_worker_killer"
 gem 'active_model_serializers'
 gem 'jwt'
