@@ -1,6 +1,7 @@
 class KeywordSearchJob
   include Sidekiq::Worker
-  sidekiq_options queue: :crawler
+  sidekiq_options retry: 5, queue: :crawler
+
 
   def perform(keyword_id)
     keyword = Keyword.find_by(id: keyword_id)
